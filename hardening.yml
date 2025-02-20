@@ -1,0 +1,31 @@
+- name: Seguridad en Ubuntu
+  hosts: ubuntu
+  become: yes
+  tasks:
+    - name: Habilitar ufw y bloquear tráfico entrante, permitir solo SSH
+      ansible.builtin.ufw:
+        state: enabled
+        policy: deny
+        rule: allow
+        port: 22
+        proto: tcp
+
+    - name: Chequeo de clave publica
+      ansible.builtin.authorized_key:
+        user: sysadmin
+        state: present
+        key: "{{ lookup('file', 'id_rsa.pub') }}"
+
+    - name: Forzardo autenticación solo por clave pública
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+      notify: Reiniciar SSH
+
+  handlers:
+    - name: Reiniciar SSH
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
+
