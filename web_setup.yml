@@ -1,0 +1,56 @@
+---
+- name: Configuracion de servidores web
+  hosts: webserver
+  become: yes
+
+  tasks:
+    - name: Instalar Apache
+      package:
+        name: httpd
+        state: present
+
+    - name: Asegurar que el servicio este habilitado y activo
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Crear directorio del VirtualHost
+      file:
+        path: "/var/www/html"
+        state: directory
+        owner: apache
+        group: apache
+        mode: '0755'
+
+    - name: Configurar VirtualHost
+      template:
+        src: templates/virtualhost.conf.j2
+        dest: "/etc/httpd/conf.d/ejemplo.conf"
+      notify: Reiniciar Apache
+
+    - name: Asegurar trafico HTTP en el firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+      notify: Reiniciar firewall
+
+    - name: Desplegar archivo index.html
+      template:
+        src: templates/index.html.j2
+        dest: "/var/www/html/index.html"
+        mode: '0644'
+
+  handlers:
+    - name: Reiniciar Apache
+      service:
+        name: httpd
+        state: restarted
+
+    - name: Reiniciar firewall
+      service:
+        name: firewalld
+        state: restarted
+
+...
