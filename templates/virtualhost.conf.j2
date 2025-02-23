@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+	ServerName  www.ejemplo.com.uy
+	DocumentRoot /var/www/html
+
+	<Directory /var/www/html>
+		AllowOverride None
+		Require all granted
+	</Directory>
+
+	ErrorLog /var/log/httpd/ejemplo_error.log
+	CustomLog /var/log/httpd/ejemplo.access.log combined
+</VirtualHost>
