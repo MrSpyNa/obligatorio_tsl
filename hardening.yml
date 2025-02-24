@@ -3,10 +3,14 @@
   hosts: Ubuntu
   become: true
   tasks:
-    - name: Habilitar UFW y permitir solo SSH
+    - name: Habilitar UFW
       community.general.ufw:
         state: enabled
-        policy: deny
+        default: deny
+        direction: incoming
+
+    - name: Permitir SSH
+      community.general.ufw:
         rule: allow
         port: 22
         proto: tcp
