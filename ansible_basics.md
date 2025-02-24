@@ -27,3 +27,16 @@ Los “handlers” son tareas que se ejecutan únicamente cuando son notificadas
  
 Para identificar errores de sintaxis en un playbook de Ansible, se puede recurir el comando “ansible-playbook” con la opción `--syntax-check`. Este comando analiza el playbook especificado y reporta cualquier problema de sintaxis sin ejecutarlo, permitiendo la corrección errores previo a la realización de cambios en los sistemas gestionados.  
 También es aconsejable utilizar la opción `--check` para realizar una "prueba en seco" (dry run), simulando la ejecución del playbook sin efectuar modificaciones reales, lo que ayuda a prever posibles problemas. 
+
+# Bibliografía
+
+Automatización con Ansible: la idempotencia de Ansible. (2021, enero 2). ICHI.PRO. 
+https://ichi.pro/es/automatizacion-con-ansible-la-idempotencia-de-ansible-49030592208492
+
+Gangwar, H. (2020, noviembre 9). Ansible : Adhoc v/s playbook. Your Technical Mate. https://learningtechnix.wordpress.com/2020/11/09/ansible-adhoc-v-s-playbook/
+
+Handlers: running operations on change — Ansible Community Documentation. (s/f). Ansible.com. Recuperado el 19 de febrero de 2025, de https://docs.ansible.com/ansible/11/playbook_guide/playbooks_handlers.html
+
+¿Qué es Ansible y cómo funciona? (s/f). Redhat.com. Recuperado el 19 de febrero de 2025, de https://www.redhat.com/es/topics/automation/learning-ansible-tutorial?sc_cid=7015Y0000048RsyQAE&gad_source=5
+
+Rempel, C. (2022, septiembre 30). A system administrator’s guide to getting started with Ansible - FAST! [DO NOT MODIFY ES PAGE]. Redhat.com. https://www.redhat.com/es/blog/system-administrators-guide-getting-started-ansible-fast
