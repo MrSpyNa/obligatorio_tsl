@@ -11,5 +11,4 @@
 - `web_setup.yml` es el playbook correspondiente al sistema operativo Centos, en torno a Apache y la configuracion de un VirtualHost.
 
 ---------------------------------------------------------------------------------------------------------------------
-Durante la realizacion de las tareas enfrentamos diversos desafios, como la busqueda de los modulos con sus parametros correspondientes para el correcto funcionamiento de los playbooks; la solucion de errores varios, que partian desde simples errores de sintaxis hasta la falta de las colecciones de Ansible correctas.
-Definitivamente lo mas importante de esta experiencia fue la organizacion y la investigacion por propia cuenta de los recursos necesarios para cumplir con la consigna planteada.
+Durante la realización de las tareas enfrentamos diversos desafíos, como la búsqueda de los módulos con sus parámetros correspondientes para el correcto funcionamiento de los playbooks; la solución de errores varios, que partían desde simples errores de sintaxis hasta la falta de las colecciones de Ansible correctas. Definitivamente lo más importante de esta experiencia fue la organización y la investigación por propia cuenta de los recursos necesarios para cumplir con la consigna planteada. 
