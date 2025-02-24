@@ -1,5 +1,5 @@
 ---
-- name: Aplicando medidas de seguridad en Ubuntu
+- name: Medidas de seguridad en Ubuntu
   hosts: Ubuntu
   become: true
   tasks:
@@ -11,7 +11,7 @@
         port: 22
         proto: tcp
 
-    - name: Agregar clave pública de sysadmin
+    - name: Chequear clave pública de sysadmin
       ansible.posix.authorized_key:
         user: sysadmin
         state: present
