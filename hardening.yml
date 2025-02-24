@@ -1,22 +1,23 @@
-- name: Seguridad en Ubuntu
-  hosts: ubuntu
-  become: yes
+---
+- name: Aplicando medidas de seguridad en Ubuntu
+  hosts: Ubuntu
+  become: true
   tasks:
-    - name: Habilitar ufw y bloquear tráfico entrante, permitir solo SSH
-      ansible.builtin.ufw:
+    - name: Habilitar UFW y permitir solo SSH
+      community.general.ufw:
         state: enabled
         policy: deny
         rule: allow
         port: 22
         proto: tcp
 
-    - name: Chequeo de clave publica
-      ansible.builtin.authorized_key:
+    - name: Agregar clave pública de sysadmin
+      ansible.posix.authorized_key:
         user: sysadmin
         state: present
-        key: "{{ lookup('file', 'id_rsa.pub') }}"
+        key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
 
-    - name: Forzardo autenticación solo por clave pública
+    - name: Deshabilitar autenticación por contraseña en SSH
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^PasswordAuthentication'
@@ -28,4 +29,3 @@
       ansible.builtin.service:
         name: sshd
         state: restarted
-
